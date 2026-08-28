@@ -65,3 +65,7 @@ pnpm-debug.log*
 __pycache__/
 *.py[cod]
 *.class
+
+~$*.xlsx
+~$*.xls
+*.tmp
