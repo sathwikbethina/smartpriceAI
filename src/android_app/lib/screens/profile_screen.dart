@@ -100,124 +100,127 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Settings Group
-            Container(
-              decoration: BoxDecoration(
-                color: provider.isDarkMode ? AppTheme.darkCard : AppTheme.lightCard,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder,
+            Material(
+              color: provider.isDarkMode ? AppTheme.darkCard : AppTheme.lightCard,
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder,
+                  ),
                 ),
-              ),
-              child: Column(
-                children: [
-                  // Dark Mode Switch
-                  ListTile(
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppTheme.primary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(10),
+                child: Column(
+                  children: [
+                    // Dark Mode Switch
+                    ListTile(
+                      leading: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppTheme.primary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Icon(
+                          provider.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
+                          color: AppTheme.primary,
+                          size: 20,
+                        ),
                       ),
-                      child: Icon(
-                        provider.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
-                        color: AppTheme.primary,
-                        size: 20,
+                      title: const Text('Dark Mode', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      trailing: Switch(
+                        value: provider.isDarkMode,
+                        onChanged: (_) => provider.toggleTheme(),
+                        activeThumbColor: AppTheme.primary,
                       ),
                     ),
-                    title: const Text('Dark Mode', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                    trailing: Switch(
-                      value: provider.isDarkMode,
-                      onChanged: (_) => provider.toggleTheme(),
-                      activeThumbColor: AppTheme.primary,
-                    ),
-                  ),
-                  Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
+                    Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
 
-                  // Delivery Location
-                  ListTile(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) => const LocationPincodeSheet(),
-                      );
-                    },
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppTheme.accent.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(10),
+                    // Delivery Location
+                    ListTile(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (_) => const LocationPincodeSheet(),
+                        );
+                      },
+                      leading: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppTheme.accent.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.location_on_rounded, color: AppTheme.accent, size: 20),
                       ),
-                      child: const Icon(Icons.location_on_rounded, color: AppTheme.accent, size: 20),
+                      title: const Text('Delivery Location', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      subtitle: Text('${provider.currentArea}, ${provider.currentCity} (${provider.currentPincode})', style: const TextStyle(fontSize: 11, color: Colors.grey)),
+                      trailing: const Icon(Icons.chevron_right_rounded, color: Colors.grey),
                     ),
-                    title: const Text('Delivery Location', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                    subtitle: Text('${provider.currentArea}, ${provider.currentCity} (${provider.currentPincode})', style: const TextStyle(fontSize: 11, color: Colors.grey)),
-                    trailing: const Icon(Icons.chevron_right_rounded, color: Colors.grey),
-                  ),
-                  Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
+                    Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
 
-                  // Installed Apps & Direct Deep Links
-                  ListTile(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) => const InstalledAppsPermissionSheet(),
-                      );
-                    },
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF3B82F6).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(10),
+                    // Installed Apps & Direct Deep Links
+                    ListTile(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (_) => const InstalledAppsPermissionSheet(),
+                        );
+                      },
+                      leading: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF3B82F6).withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.install_mobile_rounded, color: Color(0xFF3B82F6), size: 20),
                       ),
-                      child: const Icon(Icons.install_mobile_rounded, color: Color(0xFF3B82F6), size: 20),
+                      title: const Text('Installed Shopping Apps', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      subtitle: const Text('Amazon, Blinkit, Zepto, Flipkart, 1mg, PharmEasy', style: TextStyle(fontSize: 11, color: Colors.grey)),
+                      trailing: const Icon(Icons.chevron_right_rounded, color: Colors.grey),
                     ),
-                    title: const Text('Installed Shopping Apps', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                    subtitle: const Text('Amazon, Blinkit, Zepto, Flipkart, 1mg, PharmEasy', style: TextStyle(fontSize: 11, color: Colors.grey)),
-                    trailing: const Icon(Icons.chevron_right_rounded, color: Colors.grey),
-                  ),
-                  Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
+                    Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
 
-                  // Watchlist Shortcut
-                  ListTile(
-                    onTap: () => provider.setActiveTab(2),
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppTheme.emerald.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(10),
+                    // Watchlist Shortcut
+                    ListTile(
+                      onTap: () => provider.setActiveTab(2),
+                      leading: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppTheme.emerald.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.bookmark_rounded, color: AppTheme.emerald, size: 20),
                       ),
-                      child: const Icon(Icons.bookmark_rounded, color: AppTheme.emerald, size: 20),
+                      title: const Text('Saved Watchlist', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      trailing: Text(
+                        '${provider.watchlist.length} items',
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
                     ),
-                    title: const Text('Saved Watchlist', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                    trailing: Text(
-                      '${provider.watchlist.length} items',
-                      style: const TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ),
-                  Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
+                    Divider(height: 1, color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder),
 
-                  // Search History Shortcut
-                  ListTile(
-                    onTap: () => provider.setActiveTab(3),
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF8B5CF6).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(10),
+                    // Search History Shortcut
+                    ListTile(
+                      onTap: () => provider.setActiveTab(3),
+                      leading: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF8B5CF6).withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.history_rounded, color: Color(0xFF8B5CF6), size: 20),
                       ),
-                      child: const Icon(Icons.history_rounded, color: Color(0xFF8B5CF6), size: 20),
+                      title: const Text('Search History', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      trailing: Text(
+                        '${provider.searches.length} searches',
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
                     ),
-                    title: const Text('Search History', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                    trailing: Text(
-                      '${provider.searches.length} searches',
-                      style: const TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 24),

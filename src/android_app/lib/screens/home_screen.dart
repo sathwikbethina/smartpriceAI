@@ -250,15 +250,18 @@ class _HomeScreenState extends State<HomeScreen> {
               ...provider.searches.take(4).map((s) {
                 return Container(
                   margin: const EdgeInsets.only(bottom: 8),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 2),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                    tileColor: provider.isDarkMode ? AppTheme.darkCard : AppTheme.lightCard,
-                    leading: const Icon(Icons.history_rounded, size: 18, color: Colors.grey),
-                    title: Text(s.query, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                    subtitle: Text('${s.resultCount} stores compared', style: const TextStyle(fontSize: 11, color: Colors.grey)),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 12, color: Colors.grey),
-                    onTap: () => _performSearch(s.query),
+                  child: Material(
+                    color: provider.isDarkMode ? AppTheme.darkCard : AppTheme.lightCard,
+                    borderRadius: BorderRadius.circular(14),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 2),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      leading: const Icon(Icons.history_rounded, size: 18, color: Colors.grey),
+                      title: Text(s.query, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                      subtitle: Text('${s.resultCount} stores compared', style: const TextStyle(fontSize: 11, color: Colors.grey)),
+                      trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 12, color: Colors.grey),
+                      onTap: () => _performSearch(s.query),
+                    ),
                   ),
                 );
               }),

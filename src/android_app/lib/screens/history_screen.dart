@@ -94,40 +94,40 @@ class HistoryScreen extends StatelessWidget {
                       color: provider.isDarkMode ? AppTheme.darkBorder : AppTheme.lightBorder,
                     ),
                   ),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    onTap: () {
-                      provider.search(record.query);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => SearchResultsScreen(query: record.query),
+                  child: Material(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(16),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                      onTap: () {
+                        provider.search(record.query);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => SearchResultsScreen(query: record.query),
+                          ),
+                        );
+                      },
+                      leading: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppTheme.primary.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                      );
-                    },
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppTheme.primary.withValues(alpha: 0.12),
-                        borderRadius: BorderRadius.circular(12),
+                        child: const Icon(Icons.search_rounded, color: AppTheme.primary, size: 20),
                       ),
-                      child: const Icon(Icons.search_rounded, color: AppTheme.primary, size: 20),
-                    ),
-                    title: Text(
-                      record.query,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        color: provider.isDarkMode ? AppTheme.darkTextPrimary : AppTheme.lightTextPrimary,
+                      title: Text(
+                        record.query,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                       ),
-                    ),
-                    subtitle: Text(
-                      '${record.resultCount} stores compared • ${_formatTimeAgo(record.searchedAt)}',
-                      style: const TextStyle(fontSize: 11, color: Colors.grey),
-                    ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.close_rounded, size: 18, color: Colors.grey),
-                      onPressed: () => provider.deleteSearchItem(record.id),
+                      subtitle: Text(
+                        '${record.resultCount} stores compared • ${record.city}',
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.close_rounded, size: 18, color: Colors.grey),
+                        onPressed: () => provider.deleteSearch(record.id),
+                      ),
                     ),
                   ),
                 );

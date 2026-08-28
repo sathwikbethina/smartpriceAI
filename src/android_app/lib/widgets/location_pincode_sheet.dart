@@ -260,34 +260,37 @@ class _LocationPincodeSheetState extends State<LocationPincodeSheet> {
                 final loc = _popularLocations[index];
                 final isSelected = provider.currentCity.toLowerCase() == loc['city']!.toLowerCase();
 
-                return ListTile(
-                  onTap: () {
-                    provider.setLocation(loc['pincode']!, loc['city']!, loc['area']!);
-                    Navigator.pop(context);
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                  tileColor: isSelected
+                return Material(
+                  color: isSelected
                       ? AppTheme.primary.withValues(alpha: 0.1)
                       : Colors.transparent,
-                  leading: Icon(
-                    Icons.location_city_rounded,
-                    color: isSelected ? AppTheme.primary : Colors.grey,
-                  ),
-                  title: Text(
-                    '${loc['city']} (${loc['pincode']})',
-                    style: TextStyle(
-                      fontWeight: isSelected ? FontWeight.w900 : FontWeight.w600,
-                      fontSize: 13,
-                      color: isSelected ? AppTheme.primary : (provider.isDarkMode ? AppTheme.darkTextPrimary : AppTheme.lightTextPrimary),
+                  borderRadius: BorderRadius.circular(14),
+                  child: ListTile(
+                    onTap: () {
+                      provider.setLocation(loc['pincode']!, loc['city']!, loc['area']!);
+                      Navigator.pop(context);
+                    },
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    leading: Icon(
+                      Icons.location_city_rounded,
+                      color: isSelected ? AppTheme.primary : Colors.grey,
                     ),
+                    title: Text(
+                      '${loc['city']} (${loc['pincode']})',
+                      style: TextStyle(
+                        fontWeight: isSelected ? FontWeight.w900 : FontWeight.w600,
+                        fontSize: 13,
+                        color: isSelected ? AppTheme.primary : (provider.isDarkMode ? AppTheme.darkTextPrimary : AppTheme.lightTextPrimary),
+                      ),
+                    ),
+                    subtitle: Text(
+                      loc['area']!,
+                      style: const TextStyle(fontSize: 11, color: Colors.grey),
+                    ),
+                    trailing: isSelected
+                        ? const Icon(Icons.check_circle_rounded, color: AppTheme.primary, size: 20)
+                        : null,
                   ),
-                  subtitle: Text(
-                    loc['area']!,
-                    style: const TextStyle(fontSize: 11, color: Colors.grey),
-                  ),
-                  trailing: isSelected
-                      ? const Icon(Icons.check_circle_rounded, color: AppTheme.primary, size: 18)
-                      : null,
                 );
               },
             ),
