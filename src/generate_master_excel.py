@@ -157,13 +157,18 @@ def generate_master_workbook(output_path):
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.abspath(__file__))
     workspace_root = os.path.abspath(os.path.join(base_dir, ".."))
+    if base_dir not in sys.path:
+        sys.path.insert(0, base_dir)
     if workspace_root not in sys.path:
         sys.path.insert(0, workspace_root)
         
     target_1 = os.path.join(workspace_root, "Excel_Reports", "01_Master_Enterprise_Test_Report_All_Suites.xlsx")
     target_2 = os.path.join(workspace_root, "SmartPriceAI_Master_Enterprise_Test_Report.xlsx")
+    target_src = os.path.join(base_dir, "Excel_Reports", "01_Master_Enterprise_Test_Report_All_Suites.xlsx")
     
     os.makedirs(os.path.dirname(target_1), exist_ok=True)
+    os.makedirs(os.path.dirname(target_src), exist_ok=True)
     generate_master_workbook(target_1)
     generate_master_workbook(target_2)
+    generate_master_workbook(target_src)
     print("Master Excel workbook generation complete!")

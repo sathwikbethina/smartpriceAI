@@ -18,6 +18,7 @@ Welcome to the central test artifacts folder for **SmartPrice AI**. This directo
 | **[`08_Backend_Security_and_API_Test_Cases.xlsx`](./08_Backend_Security_and_API_Test_Cases.xlsx)** | **Backend Security & API** (SAST, DAST, OWASP Top 10, Auth/RBAC) | **450** | **100.00%** | 🟢 **PASSED** |
 | **[`09_API_Endpoint_Inventory.xlsx`](./09_API_Endpoint_Inventory.xlsx)** | Full inventory of Express REST API routes, controllers, and roles | **17 Routes** | **Active** | 🟢 **ACTIVE** |
 | **[`10_Security_Findings_and_Remediation.xlsx`](./10_Security_Findings_and_Remediation.xlsx)** | DevSecOps Security Audit, CWE mappings, and remediation status | **7 Findings** | **100% Fixed**| 🟢 **MITIGATED** |
+| **[`11_Load_and_Performance_Test_Report.xlsx`](./11_Load_and_Performance_Test_Report.xlsx)** | **Load & Performance Test Report** (100 VUs, 7 Scenarios, 17 Endpoints, SLAs) | **7,200 Reqs** | **100.00%** | 🟢 **PASSED** |
 
 ---
 
