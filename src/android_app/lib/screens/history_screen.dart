@@ -121,12 +121,12 @@ class HistoryScreen extends StatelessWidget {
                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                       subtitle: Text(
-                        '${record.resultCount} stores compared • ${record.city}',
+                        '${record.resultCount} stores compared • ${_formatTimeAgo(record.searchedAt)}',
                         style: const TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       trailing: IconButton(
                         icon: const Icon(Icons.close_rounded, size: 18, color: Colors.grey),
-                        onPressed: () => provider.deleteSearch(record.id),
+                        onPressed: () => provider.deleteSearchItem(record.id),
                       ),
                     ),
                   ),

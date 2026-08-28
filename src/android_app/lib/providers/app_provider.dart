@@ -442,6 +442,8 @@ class AppProvider extends ChangeNotifier {
     await prefs.setStringList(key, encoded);
   }
 
+  Future<void> deleteSearch(int id) async => deleteSearchItem(id);
+
   Future<void> clearSearches() async {
     _searches.clear();
     notifyListeners();
