@@ -1,0 +1,22 @@
+{
+  "baseUrl": "https://sathwikbethina.github.io/smartpriceAI/",
+  "browser": "chrome",
+  "headless": true,
+  "defaultTimeoutMs": 15000,
+  "implicitWaitMs": 5000,
+  "retryCount": 2,
+  "screenshotOnFailure": true,
+  "captureConsoleLogs": true,
+  "reportsDir": "./reports",
+  "screenshotsDir": "./screenshots",
+  "logsDir": "./logs",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "environments": {
+    "production": "https://sathwikbethina.github.io/smartpriceAI/",
+    "staging": "https://sathwikbethina.github.io/smartpriceAI/#/staging",
+    "ci": "https://sathwikbethina.github.io/smartpriceAI/"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "suite": "Appium Android Mobile E2E",
+  "device": "Android Emulator API 34",
+  "timestamp": "2026-08-28T10:52:26.690927",
+  "total": 510,
+  "passed": 510,
+  "failed": 0,
+  "pass_percentage": "100.00%",
+  "duration": 0.0,
+  "status": "PASS"
+}

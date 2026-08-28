@@ -1,0 +1,29 @@
+{
+  "appiumServer": {
+    "hostname": "127.0.0.1",
+    "port": 4723,
+    "path": "/wd/hub"
+  },
+  "capabilities": {
+    "platformName": "Android",
+    "automationName": "UiAutomator2",
+    "deviceName": "Android_Emulator_API_34",
+    "platformVersion": "14.0",
+    "app": "./android_app/build/app/outputs/flutter-apk/app-debug.apk",
+    "appPackage": "com.example.smartprice_ai",
+    "appActivity": "com.example.smartprice_ai.MainActivity",
+    "noReset": false,
+    "fullReset": false,
+    "newCommandTimeout": 300,
+    "autoGrantPermissions": true,
+    "headless": true
+  },
+  "retry": {
+    "maxAttempts": 2,
+    "delayMs": 1000
+  },
+  "timeouts": {
+    "implicitWait": 5000,
+    "explicitWait": 15000
+  }
+}
